@@ -27,6 +27,7 @@ ax = gdf.plot(markersize=.1, figsize=(12, 8), column='TOT', cmap='jet')
 plt.autoscale(False)
 cell.plot(ax=ax, facecolor="none", edgecolor='grey')
 ax.axis("off")
+
 merged = geopandas.sjoin(gdf, cell, how='left', op='within')
 dissolve = merged.dissolve(by="index_right", aggfunc="sum")
 cell.loc[dissolve.index, 'TOT'] = dissolve.TOT.values
@@ -35,3 +36,5 @@ plt.autoscale(False)
 ax.set_axis_off()
 plt.axis('equal');
 plt.title('liczba ludności w siatce')
+
+#gdf.plot('TOT', legend = True)
