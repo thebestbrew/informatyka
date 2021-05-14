@@ -59,12 +59,6 @@ gdf_w = gdf_w.to_crs('EPSG:4326')
 cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
 
 
-ax = gdf.plot(markersize=.1, figsize=(12, 8), column='TOT_0_14', cmap='jet')
-
-plt.autoscale(False)
-cell.plot(ax=ax, facecolor="none", edgecolor='grey')
-ax.axis("off")
-
 
 merged = geopandas.sjoin(gdf, cell, how='left', op='within')
 dissolve = merged.dissolve(by="index_right", aggfunc="sum")
@@ -72,7 +66,6 @@ cell.loc[dissolve.index, 'TOT_0_14'] = dissolve.TOT_0_14.values
 ax = cell.plot(column='TOT_0_14', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
 plt.autoscale(True)
 ax.set_axis_off()
-plt.axis('equal');
 plt.title('liczba ludności w województwach w wieku 0-14')
 
 
@@ -84,11 +77,6 @@ gdf_w = gdf_w.to_crs('EPSG:4326')
 cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
 
 
-ax = gdf.plot(markersize=.1, figsize=(12, 8), column='TOT_15_64', cmap='jet')
-
-plt.autoscale(False)
-cell.plot(ax=ax, facecolor="none", edgecolor='grey')
-ax.axis("off")
 
 
 merged = geopandas.sjoin(gdf, cell, how='left', op='within')
@@ -97,7 +85,6 @@ cell.loc[dissolve.index, 'TOT_15_64'] = dissolve.TOT_15_64.values
 ax = cell.plot(column='TOT_15_64', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
 plt.autoscale(True)
 ax.set_axis_off()
-plt.axis('equal');
 plt.title('liczba ludności w województwach w wieku 15-64')
 
 
@@ -109,12 +96,6 @@ gdf_w = gdf_w.to_crs('EPSG:4326')
 cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
 
 
-ax = gdf.plot(markersize=.1, figsize=(12, 8), column='TOT_65__', cmap='jet')
-
-plt.autoscale(False)
-cell.plot(ax=ax, facecolor="none", edgecolor='grey')
-ax.axis("off")
-
 
 merged = geopandas.sjoin(gdf, cell, how='left', op='within')
 dissolve = merged.dissolve(by="index_right", aggfunc="sum")
@@ -122,5 +103,118 @@ cell.loc[dissolve.index, 'TOT_65__'] = dissolve.TOT_65__.values
 ax = cell.plot(column='TOT_65__', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
 plt.autoscale(True)
 ax.set_axis_off()
-plt.axis('equal');
 plt.title('liczba ludności w województwach w wieku >65')
+
+
+#%%
+
+
+
+gdf_w = geopandas.read_file('shp/Województwa.shp')
+gdf_w = gdf_w.to_crs('EPSG:4326')
+
+#
+cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
+
+
+
+merged = geopandas.sjoin(gdf, cell, how='left', op='within')
+dissolve = merged.dissolve(by="index_right", aggfunc="sum")
+cell.loc[dissolve.index, 'MALE_0_14'] = dissolve.MALE_0_14.values
+ax = cell.plot(column='MALE_0_14', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
+plt.autoscale(True)
+ax.set_axis_off()
+plt.title('liczba ludności mężczyzn w województwach w wieku 0-14')
+
+
+#%%
+gdf_w = geopandas.read_file('shp/Województwa.shp')
+gdf_w = gdf_w.to_crs('EPSG:4326')
+
+#
+cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
+
+
+
+merged = geopandas.sjoin(gdf, cell, how='left', op='within')
+dissolve = merged.dissolve(by="index_right", aggfunc="sum")
+cell.loc[dissolve.index, 'MALE_15_64'] = dissolve.MALE_15_64.values
+ax = cell.plot(column='MALE_15_64', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
+plt.autoscale(True)
+ax.set_axis_off()
+plt.title('liczba ludności mężczyzn w województwach w wieku 15-64')
+
+
+#%%
+gdf_w = geopandas.read_file('shp/Województwa.shp')
+gdf_w = gdf_w.to_crs('EPSG:4326')
+
+#
+cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
+
+
+
+merged = geopandas.sjoin(gdf, cell, how='left', op='within')
+dissolve = merged.dissolve(by="index_right", aggfunc="sum")
+cell.loc[dissolve.index, 'MALE_65__'] = dissolve.MALE_65__.values
+ax = cell.plot(column='MALE_65__', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
+plt.autoscale(True)
+ax.set_axis_off()
+plt.title('liczba ludności mężczyzn w województwach w wieku >65')
+
+
+#%%
+
+
+
+gdf_w = geopandas.read_file('shp/Województwa.shp')
+gdf_w = gdf_w.to_crs('EPSG:4326')
+
+#
+cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
+
+
+
+merged = geopandas.sjoin(gdf, cell, how='left', op='within')
+dissolve = merged.dissolve(by="index_right", aggfunc="sum")
+cell.loc[dissolve.index, 'MALE_0_14'] = dissolve.MALE_0_14.values
+ax = cell.plot(column='MALE_0_14', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
+plt.autoscale(True)
+ax.set_axis_off()
+plt.title('liczba ludności kobiet w województwach w wieku 0-14')
+
+
+#%%
+gdf_w = geopandas.read_file('shp/Województwa.shp')
+gdf_w = gdf_w.to_crs('EPSG:4326')
+
+#
+cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
+
+
+
+merged = geopandas.sjoin(gdf, cell, how='left', op='within')
+dissolve = merged.dissolve(by="index_right", aggfunc="sum")
+cell.loc[dissolve.index, 'MALE_15_64'] = dissolve.MALE_15_64.values
+ax = cell.plot(column='MALE_15_64', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
+plt.autoscale(True)
+ax.set_axis_off()
+plt.title('liczba ludności kobiet w województwach w wieku 15-64')
+
+
+#%%
+gdf_w = geopandas.read_file('shp/Województwa.shp')
+gdf_w = gdf_w.to_crs('EPSG:4326')
+
+#
+cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
+
+
+
+merged = geopandas.sjoin(gdf, cell, how='left', op='within')
+dissolve = merged.dissolve(by="index_right", aggfunc="sum")
+cell.loc[dissolve.index, 'MALE_65__'] = dissolve.MALE_65__.values
+ax = cell.plot(column='MALE_65__', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
+plt.autoscale(True)
+ax.set_axis_off()
+plt.title('liczba ludności kobiet w województwach w wieku >65')
