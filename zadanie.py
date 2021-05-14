@@ -69,7 +69,7 @@ ax.axis("off")
 merged = geopandas.sjoin(gdf, cell, how='left', op='within')
 dissolve = merged.dissolve(by="index_right", aggfunc="sum")
 cell.loc[dissolve.index, 'TOT_0_14'] = dissolve.TOT_0_14.values
-ax = cell.plot(column='TOT_0_14', figsize=(12, 8), cmap='viridis', vmax=700000, edgecolor="grey", legend = True)
+ax = cell.plot(column='TOT_0_14', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
 plt.autoscale(True)
 ax.set_axis_off()
 plt.axis('equal');
@@ -119,7 +119,7 @@ ax.axis("off")
 merged = geopandas.sjoin(gdf, cell, how='left', op='within')
 dissolve = merged.dissolve(by="index_right", aggfunc="sum")
 cell.loc[dissolve.index, 'TOT_65__'] = dissolve.TOT_65__.values
-ax = cell.plot(column='TOT_65__', figsize=(12, 8), cmap='viridis', vmax=700000, edgecolor="grey", legend = True)
+ax = cell.plot(column='TOT_65__', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
 plt.autoscale(True)
 ax.set_axis_off()
 plt.axis('equal');
