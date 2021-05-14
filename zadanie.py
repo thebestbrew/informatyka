@@ -94,7 +94,7 @@ ax.axis("off")
 merged = geopandas.sjoin(gdf, cell, how='left', op='within')
 dissolve = merged.dissolve(by="index_right", aggfunc="sum")
 cell.loc[dissolve.index, 'TOT_15_64'] = dissolve.TOT_15_64.values
-ax = cell.plot(column='TOT_15_64', figsize=(12, 8), cmap='viridis', vmax=700000, edgecolor="grey", legend = True)
+ax = cell.plot(column='TOT_15_64', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
 plt.autoscale(True)
 ax.set_axis_off()
 plt.axis('equal');
