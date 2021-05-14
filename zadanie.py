@@ -234,4 +234,4 @@ cell.loc[dissolve.index, 'ratio'] = dissolve.ratio.values
 ax = cell.plot(column='ratio', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
 plt.autoscale(True)
 ax.set_axis_off()
-plt.title('ratio')
+plt.title('Ratio liczby ludności do powierzchni dla danego województwa')
