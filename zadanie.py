@@ -177,8 +177,8 @@ cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
 
 merged = geopandas.sjoin(gdf, cell, how='left', op='within')
 dissolve = merged.dissolve(by="index_right", aggfunc="sum")
-cell.loc[dissolve.index, 'MALE_0_14'] = dissolve.MALE_0_14.values
-ax = cell.plot(column='MALE_0_14', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
+cell.loc[dissolve.index, 'FEM_0_14'] = dissolve.FEM_0_14.values
+ax = cell.plot(column='FEM_0_14', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
 plt.autoscale(True)
 ax.set_axis_off()
 plt.title('liczba ludności kobiet w województwach w wieku 0-14')
@@ -195,8 +195,8 @@ cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
 
 merged = geopandas.sjoin(gdf, cell, how='left', op='within')
 dissolve = merged.dissolve(by="index_right", aggfunc="sum")
-cell.loc[dissolve.index, 'MALE_15_64'] = dissolve.MALE_15_64.values
-ax = cell.plot(column='MALE_15_64', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
+cell.loc[dissolve.index, 'FEM_15_64'] = dissolve.FEM_15_64.values
+ax = cell.plot(column='FEM_15_64', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
 plt.autoscale(True)
 ax.set_axis_off()
 plt.title('liczba ludności kobiet w województwach w wieku 15-64')
@@ -213,8 +213,25 @@ cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
 
 merged = geopandas.sjoin(gdf, cell, how='left', op='within')
 dissolve = merged.dissolve(by="index_right", aggfunc="sum")
-cell.loc[dissolve.index, 'MALE_65__'] = dissolve.MALE_65__.values
-ax = cell.plot(column='MALE_65__', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
+cell.loc[dissolve.index, 'FEM_65__'] = dissolve.FEM_65__.values
+ax = cell.plot(column='FEM_65__', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
 plt.autoscale(True)
 ax.set_axis_off()
 plt.title('liczba ludności kobiet w województwach w wieku >65')
+
+#%%
+gdf_w = geopandas.read_file('shp/Województwa.shp')
+gdf_w = gdf_w.to_crs('EPSG:4326')
+
+#
+cell = geopandas.GeoDataFrame(gdf_w, columns=['geometry'])
+gdf['ratio'] = gdf.TOT/gdf.SHAPE_Area
+
+
+merged = geopandas.sjoin(gdf, cell, how='left', op='within')
+dissolve = merged.dissolve(by="index_right", aggfunc="sum")
+cell.loc[dissolve.index, 'ratio'] = dissolve.ratio.values
+ax = cell.plot(column='ratio', figsize=(12, 8), cmap='viridis', edgecolor="grey", legend = True)
+plt.autoscale(True)
+ax.set_axis_off()
+plt.title('ratio')
